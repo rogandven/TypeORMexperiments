@@ -2,9 +2,9 @@
 
 import { EntitySchema } from "typeorm";
 
-export const UserEntity = new EntitySchema({
+export const User = new EntitySchema({
     name: "User",
-    tableName: "users",
+    tableName: "user",
     columns: {
         id: {
             type: Number,
@@ -46,4 +46,4 @@ export const UserEntity = new EntitySchema({
     },
 });
 
-export default UserEntity;
+export default User;

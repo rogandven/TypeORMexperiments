@@ -1,6 +1,6 @@
 "use strict";
 import { Router } from "express";
-import { getUsers, getUserById, updateUserById, deleteUserById } from "../controllers/user.controller.js";
+import { getPosts, getPostById, updatePostById, deletePostById, createPost } from "../controllers/post.controller.js";
 import { authenticateJwt } from "../middleware/authentication.middleware.js";
 import { isAdmin } from "../middleware/authorization.middleware.js";
 
@@ -13,9 +13,10 @@ const router = Router();
 // router.use(isAdmin);
 
 // Rutas para obtener usuarios
-router.get("/", getUsers);
-router.get("/:id", getUserById);
-router.put("/:id", updateUserById);
-router.delete("/:id", deleteUserById);
+router.get("/", getPosts);
+router.get("/:id", getPostById);
+router.put("/:id", updatePostById);
+router.delete("/:id", deletePostById);
+router.post("/", createPost);
 
 export default router;
