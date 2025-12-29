@@ -6,7 +6,7 @@ import { DATABASE, DB_HOST, DB_USERNAME, DB_PORT, PASSWORD } from "./configEnv.j
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: `${DB_HOST}`,
-    port: ${DB_PORT},
+    port: `${DB_PORT}`,
     username: `${DB_USERNAME}`,
     password: `${PASSWORD}`,
     database: `${DATABASE}`,
