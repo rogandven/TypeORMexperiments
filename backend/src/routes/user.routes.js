@@ -10,7 +10,7 @@ const router = Router();
 // router.use(authenticateJwt);
 
 // Middleware para verificar si el usuario es administrador
-router.use(isAdmin);
+// router.use(isAdmin);
 
 // Rutas para obtener usuarios
 router.get("/", getUsers);
