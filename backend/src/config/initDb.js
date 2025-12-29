@@ -6,6 +6,7 @@ import { encryptPassword } from "../helpers/bcrypt.helper.js";
 
 // Función para crear usuarios por defecto
 // Se aplica sólo al iniciar la base de datos
+/*
 export async function createUsers() {
     try {
         const userRepository = AppDataSource.getRepository(User);
@@ -41,4 +42,4 @@ export async function createUsers() {
         console.error("Error al crear usuarios: ", error);
         process.exit(1);
     }
-}
+} */
