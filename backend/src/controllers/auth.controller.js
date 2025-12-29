@@ -16,44 +16,11 @@ export async function register(req, res) {
   try {
     // Obtener el repositorio de usuarios y validar los datos de entrada
     const userRepository = AppDataSource.getRepository(User);
-    const { username, rut, email, password } = req.body;
-    const { error } = registerValidation.validate(req.body);
-    if (error) return res.status(400).json({ message: error.message });
-
-    // Verificar si el usuario ya existe verificando email, rut y username
-    const existingEmailUser = await userRepository.findOne({
-      where: { email },
-    });
-    if (existingEmailUser)
-      return res.status(409).json({ message: "Correo ya registrado." });
-
-    const existingRutUser = await userRepository.findOne({ where: { rut } });
-    if (existingRutUser)
-      return res.status(409).json({ message: "Rut ya registrado." });
-
-    const existingUsernameUser = await userRepository.findOne({
-      where: { username },
-    });
-    if (existingUsernameUser)
-      return res
-        .status(409)
-        .json({ message: "Nombre de usuario ya registrado." });
-
-    // Crear un nuevo usuario y guardar en la base de datos
-    const newUser = userRepository.create({
-      username,
-      email,
-      rut,
-      password: await encryptPassword(password),
-    });
+    const newUser = userRepository.create(req.body);
     await userRepository.save(newUser);
-
-    // Excluir la contraseña del objeto de respuesta
-    const { contraseña, ...dataUser } = newUser;
-
     res
       .status(201)
-      .json({ message: "Usuario registrado exitosamente!", data: dataUser });
+      .json({ message: "Usuario registrado exitosamente!", data: newUser });
   } catch (error) {
     console.error("Error en auth.controller.js -> register(): ", error);
     return res.status(500).json({ message: "Error al registrar el usuario" });

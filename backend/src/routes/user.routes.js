@@ -9,9 +9,6 @@ const router = Router();
 // Middleware para autenticar el JWT
 router.use(authenticateJwt);
 
-// Rutas públicas
-router.get("/profile", getProfile);
-
 // Middleware para verificar si el usuario es administrador
 router.use(isAdmin);
 
